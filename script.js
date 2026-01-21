@@ -1,23 +1,29 @@
-const codes = document.querySelectorAll('.code');
+const inputs = document.querySelectorAll('.code');
 
-codes[0].focus();
+// Focus first input on load
+inputs[0].focus();
 
-codes.forEach((code, idx) => {
-  code.addEventListener('keydown', (e) => {
+inputs.forEach((input, index) => {
+  input.addEventListener('keydown', (e) => {
+
+    // Allow only digits
     if (e.key >= '0' && e.key <= '9') {
-      code.value = '';
-      setTimeout(() => {
-        if (idx < codes.length - 1) {
-          codes[idx + 1].focus();
-        }
-      }, 10);
-    } else if (e.key === 'Backspace') {
-      setTimeout(() => {
-        if (idx > 0) {
-          codes[idx - 1].focus();
-        }
-      }, 10);
+      input.value = '';
+
+      if (index < inputs.length - 1) {
+        setTimeout(() => inputs[index + 1].focus(), 10);
+      }
+    }
+
+    // Backspace behavior
+    if (e.key === 'Backspace') {
+      input.value = '';
+
+      if (index > 0) {
+        setTimeout(() => inputs[index - 1].focus(), 10);
+      }
     }
   });
 });
+
 //your JS code here. If required.
